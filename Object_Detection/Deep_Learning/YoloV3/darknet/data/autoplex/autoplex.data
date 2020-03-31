@@ -1,0 +1,5 @@
+classes= 1
+train  = darknet/data/autoplex/train.txt
+valid  = darknet/data/autoplex/test.txt
+names = darknet/data/autoplex/autoplex.names
+backup = darknet/backup/autoplex/
