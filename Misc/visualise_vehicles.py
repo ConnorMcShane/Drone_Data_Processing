@@ -176,4 +176,4 @@ def visualise(tracked_file, video_file, fps, wait_key, draw2d = True, draw3d = F
         cv2.imshow('tracked', img)
         cv2.waitKey(wait_key)
         
-#visualise(r'D:/Connor/Autoplex/Data/Trajectories/Tracked/100120-F1S1D1_DOWNSAMPLED.csv', r'D:/Connor/Autoplex/Data/Drone_Footage/100120/100120-F1S1D1_DOWNSAMPLED.avi', 30, 10)
+visualise(r'D:/Connor/Autoplex/Data/Trajectories/Tracked/100120-F1S1D1_DOWNSAMPLED.csv', r'D:/Connor/Autoplex/Data/Drone_Footage/100120/100120-F1S1D1_DOWNSAMPLED.avi', 30, 10)
