@@ -2,7 +2,7 @@
 
 This is a collection of python scripts used to extract trajectories from aerial drone videos of vehicles. Developed for vehicles driving on the M40 at Junction 15 however, it should be general enough to be used on all vehicles that are orientated horizontally in frame. It could also be adapted for any aerial videos of vehicles
 
-![alt text](https://github.com/ConnorMcShane/Drone_Data_Processing/blob/master/example.jpg)
+![IMG](https://github.com/ConnorMcShane/Drone_Data_Processing/blob/master/example.jpg)
 
 ## Requirements
 
