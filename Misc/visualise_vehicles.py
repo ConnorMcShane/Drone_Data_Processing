@@ -18,13 +18,10 @@ import pathlib
 
 def draw_rectangle(image, centre, theta, width, height, colour = (0,255,0), thickness = 2):
     theta = np.radians(theta)
-    #r = 1/(abs(math.sin(theta)*(width/height)) + abs(math.cos(theta)))#(1-height/width)
-    #width = width*r
-    #height = height*r
+
     c, s = np.cos(theta), np.sin(theta)
     R = np.matrix('{} {}; {} {}'.format(c, -s, s, c))
-    # print(R)
-    #print centre[0]
+
     p1 = [ + width / 2,  + height / 2]
     p2 = [- width / 2,  + height / 2]
     p3 = [ - width / 2, - height / 2]
@@ -33,13 +30,11 @@ def draw_rectangle(image, centre, theta, width, height, colour = (0,255,0), thic
     p2_new = np.dot(p2, R)+ centre
     p3_new = np.dot(p3, R)+ centre
     p4_new = np.dot(p4, R)+ centre
-    #print p1_new
+
     img = cv2.line(image, (int(p1_new[0, 0]), int(p1_new[0, 1])), (int(p2_new[0, 0]), int(p2_new[0, 1])), colour, thickness)
     img = cv2.line(img, (int(p2_new[0, 0]), int(p2_new[0, 1])), (int(p3_new[0, 0]), int(p3_new[0, 1])), colour, thickness)
     img = cv2.line(img, (int(p3_new[0, 0]), int(p3_new[0, 1])), (int(p4_new[0, 0]), int(p4_new[0, 1])), colour, thickness)
     img = cv2.line(img, (int(p4_new[0, 0]), int(p4_new[0, 1])), (int(p1_new[0, 0]), int(p1_new[0, 1])), colour, thickness)
-    #img = cv2.line(img, (int(p2_new[0, 0]), int(p2_new[0, 1])), (int(p4_new[0, 0]), int(p4_new[0, 1])), colour, thickness)
-    #img = cv2.line(img, (int(p1_new[0, 0]), int(p1_new[0, 1])), (int(p3_new[0, 0]), int(p3_new[0, 1])), colour, thickness)
 
     return img
 
