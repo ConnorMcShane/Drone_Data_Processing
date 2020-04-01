@@ -13,14 +13,15 @@ Object detection is done through YoloV3. To install the darknet framework for Yo
 ## Usage
 In order to process a video file, follow this procedure:
 
+Step 1: Run main.py
 
-Step 1: Use Yolov3_detection.py to perform object detection and produce detections.csv.
+Step 2: Select darknet root folder, video and detections folder. Wait for detections to finish.
 
-Step 2: Use centroid_tracking.py to track objects and produce tracked.csv.
+Step 3: Select video, detections csv and tracked folder. Wait for tracking to finish.
 
-Step 3: Use kalman_filtering.py to smooth trjectories and produce filtered.csv. (This doesn't work properly yet)
+Step 4: Select tracked csv and filtered folder. Wait for filtering to finish. (This doesn't work properly yet)
 
-Step 4: Use visualise_vehicles.py to visualise the results at any stage.
+Step 5: Select video and file to visualise(detection, tracked or filtered).
 
-Step 5: Use manual_correction_tool.py to correct false and missed trajectories. (doesn't work perfectly yet, new trajectory tracking has an issue)
+Step 6: Use manual_correction_tool.py to correct false and missed trajectories. (doesn't work perfectly yet, new trajectory tracking has an issue)
 
