@@ -189,5 +189,3 @@ def visualise(fps = 30, wait_key = 20, draw2d = True, draw3d = False, drawTrails
         cv2.waitKey(wait_key)
     if make_video == True:
         video.release()
-        
-visualise(make_video = True)
