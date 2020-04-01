@@ -13,6 +13,9 @@ import psutil
 import threading
 import time
 import csv
+from tkinter import filedialog
+from tkinter import Tk
+import pathlib
 
 # Define vehicle class outside of function so that it can be saved(pickled) as a file and then later loaded by another module.
 class vehicle:
@@ -33,10 +36,23 @@ class vehicle:
         self.size_history = size_history
 
 # Main function of the module
-def track(detections_file, tracked_file, video_file, fps):
+def track(detections_file = '', video_file = '', fps = 30):
 
     all_start_time = time.time()
 
+    root = Tk()
+    root.withdraw()
+    current_file = '/'.join(str(pathlib.Path(__file__).parent.absolute()).split('\\')[:-4])
+
+    if video_file == '':
+        video_file = filedialog.askopenfilename(title = 'Select Video', initialdir = current_file)
+        video_name = video_file.split('/')[-1][:-4]
+
+    if detections_file == '':
+        detections_file = filedialog.askopenfilename(title = 'Select CSV file', initialdir = current_file)
+        
+    tracked_file =  '/'.join(detections_file.split('/')[:-2]) + '/Tracked/' + video_name + '.csv'
+    
     # Initial variables
     stream = cv2.VideoCapture(video_file)
     (_, frame) = stream.read()
@@ -308,6 +324,5 @@ def track(detections_file, tracked_file, video_file, fps):
     with open(tracked_unfiltered_filePath, 'w', newline='') as myfile:
         wr = csv.writer(myfile)
         wr.writerows(tracked_unfiltered_file)
-
-track(r'D:/Connor/Autoplex/Data/Trajectories/Detections/100120-F1S1D1_DOWNSAMPLED.csv', r'D:/Connor/Autoplex/Data/Trajectories/Tracked/100120-F1S1D1_DOWNSAMPLED.csv', r'D:/Connor/Autoplex/Data/Drone_Footage/100120/100120-F1S1D1_DOWNSAMPLED.AVI', 30)
+        
 print('done')

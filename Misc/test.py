@@ -1,0 +1,3 @@
+import visualise_vehicles
+
+visualise_vehicles.visualise(make_video=True)

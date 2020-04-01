@@ -1,5 +1,5 @@
-classes= 1
-train  = darknet/data/autoplex/train.txt
-valid  = darknet/data/autoplex/test.txt
-names = darknet/data/autoplex/autoplex.names
-backup = darknet/backup/autoplex/
+classes= 1 
+train  = D:/Connor/Autoplex/Repos/Drone_Data_Processing/Object_Detection/Deep_Learning/YoloV3/darknet/data/autoplex/train.txt
+valid  = D:/Connor/Autoplex/Repos/Drone_Data_Processing/Object_Detection/Deep_Learning/YoloV3/darknet/data/autoplex/test.txt
+names = D:/Connor/Autoplex/Repos/Drone_Data_Processing/Object_Detection/Deep_Learning/YoloV3/darknet/data/autoplex/autoplex.names
+backup = D:/Connor/Autoplex/Repos/Drone_Data_Processing/Object_Detection/Deep_Learning/YoloV3/darknet/backup/autoplex/
