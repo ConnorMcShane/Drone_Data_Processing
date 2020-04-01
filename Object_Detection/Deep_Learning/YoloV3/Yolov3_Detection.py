@@ -84,7 +84,7 @@ while fvs.stopped == False:
     img = fvs.read(temp_img_path)
     img_h, img_w, img_c =  img.shape
     if i == 0 and make_video == True:
-        video = cv2.VideoWriter(dstVideo, cv2.VideoWriter_fourcc(*'DIVX'), 29, (img_w,img_h))
+        video = cv2.VideoWriter(dstVideo, cv2.VideoWriter_fourcc(*'DIVX'), fps, (img_w,img_h))
 
     detections = performDetect(temp_img_path, thresh = 0.2, configPath= darknet_root +"/cfg/yolov3-autoplex-test.cfg", weightPath= darknet_root + "/backup/autoplex/yolov3-autoplex_300000.weights", metaPath= darknet_root + "/data/autoplex/autoplex.data", showImage=False, makeImageOnly=False, initOnly=False)
     

@@ -12,6 +12,9 @@ from queue import Queue
 import psutil
 import threading
 import time
+from tkinter import filedialog
+from tkinter import Tk
+import pathlib
 
 def draw_rectangle(image, centre, theta, width, height, colour = (0,255,0), thickness = 2):
     theta = np.radians(theta)
@@ -126,7 +129,16 @@ def draw_trails(img, x, y, trails, width = 0.5, radius = 3, trail_frames = 30, d
     return img, trails
 
 # Main function of the module
-def visualise(tracked_file, video_file, fps, wait_key, draw2d = True, draw3d = False, drawTrails = True, draw_angles = False):
+def visualise(fps = 30, wait_key = 20, draw2d = True, draw3d = False, drawTrails = True, draw_angles = False, make_video = False):
+
+    root = Tk()
+    root.withdraw()
+    current_file = '/'.join(str(pathlib.Path(__file__).parent.absolute()).split('\\')[:-3])
+    video_file = filedialog.askopenfilename(title = 'Select Video', initialdir = current_file)
+    tracked_file = filedialog.askopenfilename(title = 'Select CSV file', initialdir = current_file)
+    video_name = video_file.split('/')[-1]
+    video_folder = '/'.join(video_file.split('/')[:-1])
+    dst_video = video_folder + '/' + 'visualised_' + video_name
 
     # Initial variables
     stream = cv2.VideoCapture(video_file)
@@ -151,6 +163,10 @@ def visualise(tracked_file, video_file, fps, wait_key, draw2d = True, draw3d = F
     trails = []
     for i in range(number_of_frames):
         (_, img) = stream.read()
+        img_h, img_w, _ = img.shape
+        if i == 0 and make_video == True:
+            video = cv2.VideoWriter(dst_video, cv2.VideoWriter_fourcc(*'DIVX'), fps, (img_w,img_h))
+        
         for v in tracked_array[i]:
             if len(v) == 9:
                 _, vid, x, y, w, h, w_avg, h_avg, t = v
@@ -172,8 +188,11 @@ def visualise(tracked_file, video_file, fps, wait_key, draw2d = True, draw3d = F
 
                 if drawTrails == True:
                     img, trails = draw_trails(img, x, y, trails, trail_frames=200, radius=2, width=2, delay =0)
-
+        if make_video == True:
+            video.write(img)
         cv2.imshow('tracked', img)
         cv2.waitKey(wait_key)
+    if make_video == True:
+        video.release()
         
-visualise(r'D:/Connor/Autoplex/Data/Trajectories/Tracked/100120-F1S1D1_DOWNSAMPLED.csv', r'D:/Connor/Autoplex/Data/Drone_Footage/100120/100120-F1S1D1_DOWNSAMPLED.avi', 30, 10)
+visualise(make_video = True)
